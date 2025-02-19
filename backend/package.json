@@ -2,17 +2,22 @@
     "name": "backend",
     "private": true,
     "version": "0.0.0",
-    "type": "module",
+    
     "scripts": {
         "dev": "ts-node-dev --rs ./src/index.ts",
         "build": "rimraf ./dist/index.js && tsc --build ./tsconfig.json",
         "start": "node ./dist/index.js",
-        "prettify":"prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node_modules,dist}/**/*'"
+        "prettify": "prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node_modules,dist}/**/*'"
     },
     "devDependencies": {
+        "@types/express": "^5.0.0",
         "@types/node": "^22.13.4",
         "rimraf": "^6.0.1",
         "ts-node": "^10.9.2",
+        "ts-node-dev": "^2.0.0",
         "typescript": "^5.7.3"
+    },
+    "dependencies": {
+        "express": "^4.21.2"
     }
 }

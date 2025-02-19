@@ -1,20 +1,11 @@
-export const App = () => {
-  const ideas = [
-    { name: "fjdkls", nick: "djksnfl", description: "dkgdnsx" },
-    { name: "fjdkls", nick: "djksnfl", description: "dkgdnsx" },
-    { name: "fjdkls", nick: "djksnfl", description: "dkgdnsx" },
-  ];
+import { TrpcProvider } from "./lib/trpc";
+
+
+ export const App=()=>{
   return (
-    <div>
-      <h1>Beauty</h1>
-      {ideas.map((idea) => {
-        return (
-          <div key={idea.nick}>
-            <h2>{idea.name}</h2>
-            <p>{idea.description}</p>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
+    <TrpcProvider>
+      <AllIdeasPage/>
+    </TrpcProvider>
+  )
+
+ }

@@ -1,14 +1,11 @@
 import express from "express";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { trpcRouter } from "./trpc";
-
-const ideas = [
-  { name: "fjdkls", nick: "djksnfl", description: "dkgdnsx" },
-  { name: "fjdkls", nick: "djksnfl", description: "dkgdnsx" },
-  { name: "fjdkls", nick: "djksnfl", description: "dkgdnsx" },
-];
+import cors from 'cors'
 
 const expressApp = express();
+
+expressApp.use(cors())
 expressApp.get("/hello", (req, res) => {
   res.send("hi");
 });

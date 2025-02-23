@@ -1,6 +1,7 @@
 import css from './index.module.scss'
 import { Input } from '../../components/Input'
 import { Segment } from '../../components/Segment'
+import { Alert } from '../../components/Alert'
 import { Textarea } from '../../components/Textarea'
 import { trpc } from '../../lib/trpc'
 import { useState } from 'react'
@@ -50,8 +51,8 @@ export const NewIdeaPage = () => {
         <Input name="description" label="Description" formik={formik} maxWidth={500} />
         <Textarea name="text" label="Text" formik={formik} />
         {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Какие-то поля не заполнены</div>}
-        {!!submittingError && <div style={{ color: 'red' }}>{submittingError}</div>}
-        {successMessageVisible && <div style={{ color: 'green' }}>Idea created!</div>}
+        {!!submittingError && <Alert color="red">{submittingError}</Alert>}
+        {successMessageVisible && <Alert color="green">Idea created!</Alert>}
         <button type="submit" disabled={formik.isSubmitting}>
           {formik.isSubmitting ? 'Submitting...' : 'Create Idea'}
         </button>

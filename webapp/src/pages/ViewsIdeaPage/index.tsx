@@ -2,6 +2,8 @@ import { trpc } from '../../lib/trpc';
 import { useParams } from 'react-router-dom';
 import { type ViewIdeaRouteParams } from '../../lib/routes';
 
+import css from './index.module.scss'
+
 export const ViewsIdeaPage = () => {
     const { someNick } = useParams() as ViewIdeaRouteParams;
 
@@ -23,10 +25,9 @@ export const ViewsIdeaPage = () => {
 
     return (
         <div>
-            <h1>{data.idea.name}</h1>
-            <p>{data.idea.description}</p>
-            <h2>jflekfj</h2>
-            <div dangerouslySetInnerHTML={{ __html: data.idea.text }} />
+      <h1 className={css.title}>{data.idea.name}</h1>
+      <p className={css.description}>{data.idea.description}</p>
+      <div className={css.text} dangerouslySetInnerHTML={{ __html: data.idea.text }} />
         </div>
-    );
+      );
 };

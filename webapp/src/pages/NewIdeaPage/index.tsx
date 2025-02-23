@@ -3,6 +3,9 @@ import { Input } from '../../components/Input'
 import { Segment } from '../../components/Segment'
 import { Textarea } from '../../components/Textarea'
 import { useFormik } from 'formik'
+import { withZodSchema } from 'formik-validator-zod'
+import { z } from 'zod'
+
 export const NewIdeaPage = () => {
     const formik = useFormik({
         initialValues: {
@@ -11,26 +14,17 @@ export const NewIdeaPage = () => {
           description: '',
           text: '',
         },
-        validate: (values) => {
-            const errors: Partial<typeof values> = {}
-            if (!values.name) {
-              errors.name = 'Заполните имя'
-            }
-            if (!values.nick) {
-              errors.nick = 'Заполните ник'
-            } else if (!values.nick.match(/^[a-z0-9-]+$/)) {
-              errors.nick = 'в нике могут быть только буквы и цифры и тире'
-            }
-            if (!values.description) {
-              errors.description = 'Заполните описание'
-            }
-            if (!values.text) {
-              errors.text = 'Заполните текст'
-            } else if (values.text.length < 100) {
-              errors.text = 'В текстк должно быть хотя бы 100 символов'
-            }
-            return errors
-          },
+        validate: withZodSchema(
+            z.object({
+              name: z.string().min(1),
+              nick: z
+                .string()
+                .min(1)
+                .regex(/^[a-z0-9-]+$/, 'Nick may contain only lowercase letters, numbers and dashes'),
+              description: z.string().min(1),
+              text: z.string().min(100, 'Text should be at least 100 characters long'),
+            })
+          ),
         onSubmit: (values) => {
           console.info('Submitted', values)
         },

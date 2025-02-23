@@ -11,6 +11,26 @@ export const NewIdeaPage = () => {
           description: '',
           text: '',
         },
+        validate: (values) => {
+            const errors: Partial<typeof values> = {}
+            if (!values.name) {
+              errors.name = 'Заполните имя'
+            }
+            if (!values.nick) {
+              errors.nick = 'Заполните ник'
+            } else if (!values.nick.match(/^[a-z0-9-]+$/)) {
+              errors.nick = 'в нике могут быть только буквы и цифры и тире'
+            }
+            if (!values.description) {
+              errors.description = 'Заполните описание'
+            }
+            if (!values.text) {
+              errors.text = 'Заполните текст'
+            } else if (values.text.length < 100) {
+              errors.text = 'В текстк должно быть хотя бы 100 символов'
+            }
+            return errors
+          },
         onSubmit: (values) => {
           console.info('Submitted', values)
         },
@@ -28,6 +48,7 @@ export const NewIdeaPage = () => {
         <Input name="nick" label="Nick" formik={formik} />
         <Input name="description" label="Description" formik={formik} />
         <Textarea name="text" label="Text" formik={formik} />
+        {!formik.isValid && <div style={{ color: 'red' }}>Какие-то поля не заполнены</div>}
             <button type="submit">Create Idea</button>
           </form>
         </Segment>

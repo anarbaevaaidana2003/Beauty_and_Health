@@ -35,7 +35,9 @@ export const NewIdeaPage = () => {
         <Input name="description" label="Description" formik={formik} />
         <Textarea name="text" label="Text" formik={formik} />
         {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Какие-то поля не заполнены</div>}
-            <button type="submit">Create Idea</button>
+        <button type="submit" disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? 'Submitting...' : 'Create Idea'}
+        </button>
           </form>
         </Segment>
       )

@@ -47,7 +47,7 @@ export const NewIdeaPage = () => {
           >
         <Input name="name" label="Name" formik={formik} />
         <Input name="nick" label="Nick" formik={formik} />
-        <Input name="description" label="Description" formik={formik} />
+        <Input name="description" label="Description" formik={formik} maxWidth={500} />
         <Textarea name="text" label="Text" formik={formik} />
         {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Какие-то поля не заполнены</div>}
         {!!submittingError && <div style={{ color: 'red' }}>{submittingError}</div>}

@@ -5,7 +5,7 @@ export const Layout=()=>{
     return (
       <div className={css.layout}>
       <div className={css.navigation}>
-        <div className={css.logo}>IdeaNick</div>
+        <div className={css.logo}>Ideas</div>
         <ul className={css.menu}>
           <li className={css.item}>
             <Link className={css.link} to={getAllIdeasRoute()}>

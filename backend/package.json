@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
-    "types": "tsc --noEmit --project ./tsconfig.json",
-    "dev": "ts-node-dev --watch ./.env --rs ./src/index.ts",
+    "dev": "ts-node-dev --watch ./.env --rs --exit-child ./src/index.ts",
     "pmd": "prisma migrate dev",
     "pgc": "prisma generate",
     "build": "rimraf ./dist/index.js && tsc --build ./tsconfig.json",

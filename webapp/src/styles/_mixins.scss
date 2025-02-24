@@ -2,7 +2,7 @@
 @import '../../node_modules/include-media/dist/_include-media.scss';
 
 @mixin link($color: $blue, $hoverColor: $red) {
-  color: $color;
+  color: $color;//
   transition: color 200ms ease;
   &:hover,
   &:active {

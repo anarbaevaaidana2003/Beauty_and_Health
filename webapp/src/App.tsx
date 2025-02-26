@@ -1,9 +1,10 @@
 import { TrpcProvider } from "./lib/trpc";
 import { AllIdeasPage } from "./pages/AllIdeasPage";
 import { ViewsIdeaPage } from "./pages/ViewsIdeaPage";
-import { SignInPage } from './pages/SignInPage'
+import { SignInPage } from './pages/SignInPage';
+import { SignOutPage } from './pages/SignOutPage';
 import { viewIdeaRouteParams } from "./lib/routes";
-import * as routes from './lib/routes'
+import * as routes from './lib/routes';
 import { BrowserRouter,Route,Routes} from 'react-router-dom'
 import { getAllIdeasRoute,getViewIdeaRoute } from "./lib/routes";
 import { SignUpPage } from './pages/SignUpPage'
@@ -15,6 +16,7 @@ import './styles/global.scss'
     <TrpcProvider>
       <BrowserRouter>
       <Routes>
+      <Route path={routes.getSignOutRoute()} element={<SignOutPage />} />
         <Route element={<Layout/>}>
         <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
         <Route path={routes.getSignInRoute()} element={<SignInPage />} />

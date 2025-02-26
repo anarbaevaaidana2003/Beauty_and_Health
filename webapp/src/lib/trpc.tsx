@@ -1,8 +1,10 @@
 import {createTRPCReact} from '@trpc/react-query'
-import type { TrpcRouter } from '@ideanick/backend/src/router'
+import type { TrpcRouter } from '@forum_project/backend/src/router'
 import {QueryClient,QueryClientProvider} from "@tanstack/react-query"
 import {httpBatchLink} from "@trpc/client"
 import superjson from 'superjson'
+import Cookies from 'js-cookie'
+import React from "react";
 
 export const trpc=createTRPCReact<TrpcRouter>()
 
@@ -20,6 +22,13 @@ const trpcClient=trpc.createClient({
     links:[
         httpBatchLink({
             url: 'http://localhost:3000/trpc',
+            headers: () => {
+                const token = Cookies.get('token')
+                console.log(token);
+                return {
+                  ...(token && { authorization: `Bearer ${token}` }),
+                }
+              },
         }),
     ],
 })

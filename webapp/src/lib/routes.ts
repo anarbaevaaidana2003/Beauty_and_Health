@@ -8,3 +8,4 @@ export const viewIdeaRouteParams=getRouteParams({someNick:true})
 export const getViewIdeaRoute=({someNick}:{someNick:string})=>`/ideas/${someNick}`;
 export const getNewIdeaRoute = () => '/ideas/new'
 export const getSignUpRoute = () => '/sign-up'
+export const getSignInRoute = () => '/sign-in'

@@ -13,6 +13,7 @@ import { Segment } from '../../components/Segment'
 import { trpc } from '../../lib/trpc'
 import { getAllIdeasRoute } from '../../lib/routes'
 import css from './index.module.scss'
+import { DatePickerInput } from '../../components/DatePickerInput'
 /*
 export const SignUpPage = () => {
   const navigate = useNavigate()
@@ -117,9 +118,14 @@ export const SignUpPage = () => {
           <p className="mb-6">Создайте аккаунт и начните делиться своими знаниями и идеями!</p>
           <form onSubmit={formik.handleSubmit}>
             <FormItems>
-              <Input label="Имя пользователя" name="nick" formik={formik} />
+              <Input label="Nick" name="nick" formik={formik} />
+              <Input label="Имя" name="name" formik={formik} />
+              <Input label="Фамилия" name="surname" formik={formik} />
               <Input label="Пароль" name="password" type="password" formik={formik} />
               <Input label="Повторите пароль" name="passwordAgain" type="password" formik={formik} />
+              <DatePickerInput label="birtate" name="birthdate" formik={formik} />
+
+
               {!formik.isValid && !!formik.submitCount && <Alert color="red">Некоторые поля заполнены неверно</Alert>}
               {submittingError && <Alert color="red">{submittingError}</Alert>}
               <Button loading={formik.isSubmitting}>Регистрация</Button>

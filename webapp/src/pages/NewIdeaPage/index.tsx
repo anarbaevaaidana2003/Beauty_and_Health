@@ -41,7 +41,7 @@ export const NewIdeaPage = () => {
       })
     
       return (
-        <Segment title="New Idea">
+        <Segment title="Создать обсуждение">
           <form
             onSubmit={(e) => {
               e.preventDefault()
@@ -49,14 +49,14 @@ export const NewIdeaPage = () => {
             }}
           >
                 <FormItems>
-          <Input name="name" label="Name" formik={formik} />
+          <Input name="name" label="Заголовок" formik={formik} />
           <Input name="nick" label="Nick" formik={formik} />
-          <Input name="description" label="Description" formik={formik} maxWidth={500} />
-          <Textarea name="text" label="Text" formik={formik} />
-          {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Some fields are invalid</div>}
+          <Input name="description" label="Краткое описание" formik={formik} maxWidth={500} />
+          <Textarea name="text" label="Текст" formik={formik} />
+          {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Некоторые поля отсутствуют</div>}
           {!!submittingError && <Alert color="red">{submittingError}</Alert>}
-          {successMessageVisible && <Alert color="green">Idea created!</Alert>}
-          <Button loading={formik.isSubmitting}>Create Idea</Button>
+          {successMessageVisible && <Alert color="green">Обсуждение создано!</Alert>}
+          <Button loading={formik.isSubmitting}>Сохранить</Button>
         </FormItems>
           </form>
         </Segment>

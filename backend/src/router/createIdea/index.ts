@@ -8,7 +8,7 @@ export const createIdeaTrpcRoute = trpc.procedure.input(zCreateIdeaTrpcInput).mu
     },
   })
   if (exIdea) {
-        throw Error('Idea with this nick already exists')
+        throw Error('Обсуждение с этим ником уже существует.')
       }
       await ctx.prisma.idea.create({
         data: input,

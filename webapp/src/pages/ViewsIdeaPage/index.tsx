@@ -14,20 +14,20 @@ export const ViewsIdeaPage = () => {
     });
 
     if (isLoading || isFetching) {
-        return <span>Loading...</span>;
+        return <span>Загрузка...</span>;
     }
 
     if (isError) {
-        return <span>Error: {error?.message || 'An error occurred'}</span>;
+        return <span>Ошибка: {error?.message || 'An error occurred'}</span>;
     }
 
     if (!data?.idea) {
-        return <span>Idea not found</span>;
+        return <span>Обсуждение на найденно</span>;
     }
 
     return (
         <Segment title={data.idea.name} description={data.idea.description}>
-     <div className={css.createdAt}>Created At: {format(data.idea.createdAt, 'yyyy-MM-dd')}</div>
+     <div className={css.createdAt}>Cоздано: {format(data.idea.createdAt, 'yyyy-MM-dd')}</div>
      <div className={css.text} dangerouslySetInnerHTML={{ __html: data.idea.text }} />
       </Segment>
       );

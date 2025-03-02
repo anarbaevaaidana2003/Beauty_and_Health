@@ -29,6 +29,7 @@
     "reset-css": "^5.0.2",
     "sass": "^1.63.0",
     "superjson": "^1.13.3",
+    "typeface-roboto": "^1.1.13",
     "zod": "^3.24.2"
   },
   "devDependencies": {

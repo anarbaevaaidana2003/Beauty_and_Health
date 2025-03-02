@@ -10,7 +10,7 @@ export const signUpTrpcRoute = trpc.procedure.input(zSignUpTrpcInput).mutation(a
     },
   })
   if (exUser) {
-    throw new Error('User with this nick already exists')
+    throw new Error('Пользователь с таким ником уже существует')
   }
   const user = await ctx.prisma.user.create({
     data: {

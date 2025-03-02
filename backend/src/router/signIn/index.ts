@@ -11,7 +11,7 @@ export const signInTrpcRoute = trpc.procedure.input(zSignInTrpcInput).mutation(a
     },
   })
   if (!user) {
-    throw new Error('Wrong nick or password')
+    throw new Error('Неверный пароль или ник')
   }
   const token = signJWT(user.id)
   return { token }

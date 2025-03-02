@@ -29,7 +29,7 @@
 @import '../../styles/_mixins';
 
 .button {
-  padding: 8px 15px;
+  padding: 10px 15px;
   color: $white;
   background-color: #0a980a;
   border: none;
@@ -69,7 +69,7 @@
   // Голубая кнопка с синим шрифтом
   &.blue {
     background-color: #00aaff;
-    color: #0055aa; // синий шрифт
+    color: #040d52; // синий шрифт
 
     &:hover {
       background-color: #3399ff;
@@ -82,9 +82,11 @@
 
   // Белая кнопка с синим краем
   &.white-with-blue-border {
+    padding: 8px 15px;
     background-color: $white;
     color: #0055aa; // синий шрифт
     border: 2px solid #0055aa;
+    padding:8 px;
 
     &:hover {
       background-color: #f0f0f0;

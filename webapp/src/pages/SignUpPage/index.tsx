@@ -14,6 +14,7 @@ import { trpc } from '../../lib/trpc'
 import { getAllIdeasRoute } from '../../lib/routes'
 import css from './index.module.scss'
 import { DatePickerInput } from '../../components/DatePickerInput'
+import { SelectInput } from '../../components/SelectInput'
 /*
 export const SignUpPage = () => {
   const navigate = useNavigate()
@@ -75,7 +76,12 @@ export const SignUpPage = () => {
   const trpcUtils = trpc.useContext();
   const [submittingError, setSubmittingError] = useState<string | null>(null);
   const signUp = trpc.signUp.useMutation();
-
+  const options = [
+    { value: 'Мужской', label: 'Мужской' },
+    { value: 'Женский', label: 'Женский' },
+    { value: 'Другой', label: 'Другой' },
+  ];
+  
   const formik = useFormik({
     initialValues: {
       nick: '',
@@ -124,7 +130,8 @@ export const SignUpPage = () => {
               <Input label="Пароль" name="password" type="password" formik={formik} />
               <Input label="Повторите пароль" name="passwordAgain" type="password" formik={formik} />
               <DatePickerInput label="birtate" name="birthdate" formik={formik} />
-
+              <SelectInput options={options} label="gender" name="gender" formik={formik} />
+        
 
               {!formik.isValid && !!formik.submitCount && <Alert color="red">Некоторые поля заполнены неверно</Alert>}
               {submittingError && <Alert color="red">{submittingError}</Alert>}

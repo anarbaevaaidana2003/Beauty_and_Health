@@ -12,12 +12,17 @@ import cn from 'classnames'
 import css from './index.module.scss'
 import { Link } from 'react-router-dom'
 
-interface ButtonProps {
+/*interface ButtonProps {
   children: React.ReactNode
   loading?: boolean
   variant?: 'blue' | 'white-with-blue-border' // Добавляем варианты для кнопки
 }
-
+*/
+export type ButtonProps={
+  children: React.ReactNode
+  loading?: boolean
+  variant?: 'blue' | 'white-with-blue-border' // Добавляем варианты для кнопки
+}
 export const Button = ({ children, loading = false, variant = 'blue' }: ButtonProps) => {
   return (
     <button

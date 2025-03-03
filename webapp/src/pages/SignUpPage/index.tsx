@@ -1,9 +1,8 @@
 import { zSignUpTrpcInput } from '@forum_project/backend/src/router/signUp/input'
-import { useFormik } from 'formik'
-import { withZodSchema } from 'formik-validator-zod'
-import { useState } from 'react'
 import { z } from 'zod'
 import Cookies from 'js-cookie'
+import { useForm } from '../../lib/form'
+
 import { useNavigate } from 'react-router-dom'
 import { Alert } from '../../components/Alert'
 import { Button } from '../../components/Button'
@@ -74,7 +73,6 @@ export const SignUpPage = () => {
 export const SignUpPage = () => {
   const navigate = useNavigate();
   const trpcUtils = trpc.useContext();
-  const [submittingError, setSubmittingError] = useState<string | null>(null);
   const signUp = trpc.signUp.useMutation();
   const options = [
     { value: 'Мужской', label: 'Мужской' },
@@ -82,7 +80,7 @@ export const SignUpPage = () => {
     { value: 'Другой', label: 'Другой' },
   ];
   
-  const formik = useFormik({
+  const { formik, buttonProps, alertProps } = useForm({
     initialValues: {
       nick: '',
       password: '',
@@ -92,32 +90,30 @@ export const SignUpPage = () => {
       name:'',
       gender:''
     },
-    validate: withZodSchema(
-      zSignUpTrpcInput
-        .extend({
-          passwordAgain: z.string().min(1),
-        })
-        .superRefine((val, ctx) => {
-          if (val.password !== val.passwordAgain) {
-            ctx.addIssue({
-              code: z.ZodIssueCode.custom,
-              message: 'Passwords must be the same',
-              path: ['passwordAgain'],
-            });
-          }
-        })
-    ),
+    validationSchema: zSignUpTrpcInput
+      .extend({
+        passwordAgain: z.string().min(1),
+      })
+      .superRefine((val, ctx) => {
+        if (val.password !== val.passwordAgain) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Passwords must be the same',
+            path: ['passwordAgain'],
+          })
+        }
+      }),
+
+
     onSubmit: async (values) => {
-      try {
-        setSubmittingError(null);
-        const { token } = await signUp.mutateAsync(values);
-        Cookies.set('token', token, { expires: 99999 });
-        void trpcUtils.invalidate();
-        navigate(getAllIdeasRoute());
-      } catch (err: any) {
-        setSubmittingError(err.message);
-      }
+      const { token } = await signUp.mutateAsync(values)
+      Cookies.set('token', token, { expires: 99999 })
+      void trpcUtils.invalidate()
+      navigate(getAllIdeasRoute())
+
+
     },
+    resetOnSuccess: false,
   });
 
   return (
@@ -137,9 +133,8 @@ export const SignUpPage = () => {
               <SelectInput options={options} label="gender" name="gender" formik={formik} />
         
 
-              {!formik.isValid && !!formik.submitCount && <Alert color="red">Некоторые поля заполнены неверно</Alert>}
-              {submittingError && <Alert color="red">{submittingError}</Alert>}
-              <Button loading={formik.isSubmitting}>Регистрация</Button>
+              <Alert {...alertProps} />
+              <Button {...buttonProps}>Sign Up</Button>
             </FormItems>
           </form>
         </Segment>

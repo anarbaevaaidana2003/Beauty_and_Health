@@ -10,6 +10,7 @@ export const Button = ({ children, loading = false }: { children: React.ReactNod
 }*/
 import cn from 'classnames'
 import css from './index.module.scss'
+import { Link } from 'react-router-dom'
 
 interface ButtonProps {
   children: React.ReactNode
@@ -30,5 +31,12 @@ export const Button = ({ children, loading = false, variant = 'blue' }: ButtonPr
     >
       {loading ? 'Отправляется...' : children}
     </button>
+  )
+}
+export const LinkButton = ({ children, to }: { children: React.ReactNode; to: string }) => {
+  return (
+    <Link className={cn({ [css.button]: true })} to={to}>
+      {children}
+    </Link>
   )
 }

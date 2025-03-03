@@ -5,7 +5,11 @@ export const getAllIdeasRoute=()=>'/';
 
 export type ViewIdeaRouteParams=typeof viewIdeaRouteParams
 export const viewIdeaRouteParams=getRouteParams({someNick:true})
-export const getViewIdeaRoute=({someNick}:{someNick:string})=>`/ideas/${someNick}`;
+export const editIdeaRouteParams = getRouteParams({ someNick: true })
+export type EditIdeaRouteParams = typeof viewIdeaRouteParams
+export const getEditIdeaRoute = ({ someNick }: EditIdeaRouteParams) => `/ideas/${someNick}/edit`
+export const getViewIdeaRoute = ({ someNick }: ViewIdeaRouteParams) => `/ideas/${someNick}`
+
 export const getNewIdeaRoute = () => '/ideas/new'
 export const getSignUpRoute = () => '/sign-up'
 export const getSignInRoute = () => '/sign-in'

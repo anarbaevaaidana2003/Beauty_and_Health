@@ -3,7 +3,7 @@ import { zCreateIdeaTrpcInput } from './input'
 
 export const createIdeaTrpcRoute = trpc.procedure.input(zCreateIdeaTrpcInput).mutation(async ({ input, ctx }) => {
   if (!ctx.me){
-    throw Error('Unauthorized')
+    throw Error('Вы не авторизованы')
   }
 
   

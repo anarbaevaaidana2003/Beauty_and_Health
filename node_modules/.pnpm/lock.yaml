@@ -147,6 +147,9 @@ importers:
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -182,7 +185,7 @@ importers:
         specifier: ^3.0.6
         version: 3.0.6
       '@types/lodash':
-        specifier: ^4.14.198
+        specifier: ^4.17.15
         version: 4.17.15
       '@types/node':
         specifier: ^22.13.4

@@ -87,6 +87,10 @@ export const SignUpPage = () => {
       nick: '',
       password: '',
       passwordAgain: '',
+      birthDate: '',
+      surname:'',
+      name:'',
+      gender:''
     },
     validate: withZodSchema(
       zSignUpTrpcInput
@@ -129,7 +133,7 @@ export const SignUpPage = () => {
               <Input label="Фамилия" name="surname" formik={formik} />
               <Input label="Пароль" name="password" type="password" formik={formik} />
               <Input label="Повторите пароль" name="passwordAgain" type="password" formik={formik} />
-              <DatePickerInput label="birtate" name="birthdate" formik={formik} />
+              <DatePickerInput label="birtate" name="birthDate" formik={formik} />
               <SelectInput options={options} label="gender" name="gender" formik={formik} />
         
 

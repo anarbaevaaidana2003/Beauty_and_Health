@@ -11,6 +11,15 @@ export const getIdeaTrpcRoute = trpc.procedure
     const idea = await ctx.prisma.idea.findUnique({
       where: {
         nick: input.someNick,
+
+      },
+      include:{
+        author:{
+          select:{
+            id:true,
+            nick:true,
+          },
+        },
       },
     })
    

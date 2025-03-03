@@ -7,6 +7,7 @@ export const signUpTrpcRoute = trpc.procedure.input(zSignUpTrpcInput).mutation(a
   const exUser = await ctx.prisma.user.findUnique({
     where: {
       nick: input.nick,
+      
     },
   })
   if (exUser) {
@@ -16,6 +17,12 @@ export const signUpTrpcRoute = trpc.procedure.input(zSignUpTrpcInput).mutation(a
     data: {
       nick: input.nick,
       password: getPasswordHash(input.password),
+      name:input.name,
+      surname:input.surname,
+      birthDate:input.birthDate,
+      gender:input.gender
+
+
     },
   })
   const token = signJWT(user.id)

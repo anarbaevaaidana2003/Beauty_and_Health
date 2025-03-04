@@ -4,6 +4,7 @@ import { ViewsIdeaPage } from "./pages/ViewsIdeaPage";
 import { SignInPage } from './pages/SignInPage';
 import { SignOutPage } from './pages/SignOutPage';
 import { viewIdeaRouteParams } from "./lib/routes";
+import { NotFoundPage } from './pages/NotFoundPage'
 import { AppContextProvider } from './lib/ctx'
 import * as routes from './lib/routes';
 import { BrowserRouter,Route,Routes} from 'react-router-dom'
@@ -27,6 +28,7 @@ import './styles/global.scss'
               <Route path={routes.getNewIdeaRoute()} element={<NewIdeaPage />} />
               <Route path={routes.getViewIdeaRoute(routes.viewIdeaRouteParams)} element={<ViewsIdeaPage />} />
               <Route path={routes.getEditIdeaRoute(routes.editIdeaRouteParams)} element={<EditIdeaPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

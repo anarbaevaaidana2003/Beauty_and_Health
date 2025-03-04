@@ -7,8 +7,7 @@ import { Input } from '../../components/Input'
 import { Segment } from '../../components/Segment'
 import { trpc } from '../../lib/trpc'
 import Cookies from 'js-cookie'
-import { useNavigate } from 'react-router-dom'
-import { getAllIdeasRoute } from '../../lib/routes'
+import { withPageWrapper } from '../../lib/pageWrapper'
 import './index.module.scss'
 /*
 export const SignInPage = () => {
@@ -52,8 +51,9 @@ export const SignInPage = () => {
 }*/
 
 
-export const SignInPage = () => {
-  const navigate = useNavigate();
+export const SignInPage = withPageWrapper({
+  redirectAuthorized: true,
+})(() => {
   const trpcUtils = trpc.useContext();
   const signIn = trpc.signIn.useMutation();
 
@@ -68,7 +68,6 @@ export const SignInPage = () => {
       const { token } = await signIn.mutateAsync(values)
       Cookies.set('token', token, { expires: 99999 })
       void trpcUtils.invalidate()
-      navigate(getAllIdeasRoute())
     },
     resetOnSuccess: false,
   });
@@ -98,7 +97,7 @@ export const SignInPage = () => {
       </section>
     </main>
   );
-};
+})
 
 
 

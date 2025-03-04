@@ -7,8 +7,11 @@ import { trpc } from '../../lib/trpc'
 import { Button } from '../../components/Button'
 import { FormItems } from '../../components/FormItems'
 import { useForm } from '../../lib/form'
+import { withPageWrapper } from '../../lib/pageWrapper'
 import { zCreateIdeaTrpcInput } from '@forum_project/backend/src/router/createIdea/input'
-export const NewIdeaPage = () => {
+export const NewIdeaPage = withPageWrapper({
+  authorizedOnly: true,
+})(() => {
 
     const createIdea = trpc.createIdea.useMutation()
     
@@ -47,4 +50,4 @@ export const NewIdeaPage = () => {
           </form>
         </Segment>
       )
-}
+    })

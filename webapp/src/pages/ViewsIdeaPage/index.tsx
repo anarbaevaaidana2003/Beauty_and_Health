@@ -14,11 +14,9 @@ export const ViewsIdeaPage = withPageWrapper({
      someNick,
     })
   },
-  checkExists: ({ queryResult }) => !!queryResult.data.idea,
-  checkExistsMessage: 'Idea not found',
-  setProps: ({ queryResult, ctx }) => ({
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    idea: queryResult.data.idea!,
+  setProps: ({ queryResult, checkExists, ctx }) => ({
+    idea: checkExists(queryResult.data.idea, 'Idea not found'),
+
     me: ctx.me,
   }),
 })(({ idea, me }) => (

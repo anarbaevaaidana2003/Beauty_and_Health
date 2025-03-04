@@ -12,12 +12,14 @@ export const getIdeaTrpcRoute = trpc.procedure
       where: {
         nick: input.someNick,
 
+
       },
       include:{
         author:{
           select:{
             id:true,
             nick:true,
+            name: true,
           },
         },
       },

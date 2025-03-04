@@ -37,7 +37,7 @@ export const LeftMenu = () => {
 */
 
 import { Link } from 'react-router-dom';
-import { getAllIdeasRoute, getNewIdeaRoute } from '../../lib/routes';
+import { getAllIdeasRoute, getNewIdeaRoute,getEditProfileRoute, } from '../../lib/routes';
 import { useMe } from '../../lib/ctx'; // Импорт контекста
 import css from './index.module.scss';
 
@@ -63,6 +63,11 @@ export const LeftMenu = () => {
             Создать обсуждение
           </Link>
         </li>
+        <li className={css.item}>
+                <Link className={css.link} to={getEditProfileRoute()}>
+                  Edit Profile
+                </Link>
+              </li>
       </ul>
     </div>
   );

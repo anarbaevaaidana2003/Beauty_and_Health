@@ -7,6 +7,7 @@ import { EditIdeaPage } from './pages/ideas/EditIdeaPage'
 import { NewIdeaPage } from './pages/ideas/NewIdeaPage'
 import { ViewsIdeaPage } from './pages/ideas/ViewsIdeaPage'
 import { NotFoundPage } from './pages/other/NotFoundPage'
+import { EditProfilePage } from './pages/auth/EditProfilePage'
 
 import { viewIdeaRouteParams } from "./lib/routes";
 import { AppContextProvider } from './lib/ctx';
@@ -29,6 +30,7 @@ import './styles/global.scss'
               <Route path={routes.getSignInRoute()} element={<SignInPage />} />
               <Route path={routes.getAllIdeasRoute()} element={<AllIdeasPage />} />
               <Route path={routes.getNewIdeaRoute()} element={<NewIdeaPage />} />
+              <Route path={routes.getEditProfileRoute()} element={<EditProfilePage />} />
               <Route path={routes.getViewIdeaRoute(routes.viewIdeaRouteParams)} element={<ViewsIdeaPage />} />
               <Route path={routes.getEditIdeaRoute(routes.editIdeaRouteParams)} element={<EditIdeaPage />} />
               <Route path="*" element={<NotFoundPage />} />

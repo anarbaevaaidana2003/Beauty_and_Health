@@ -11,6 +11,8 @@ export const getEditIdeaRoute = ({ someNick }: EditIdeaRouteParams) => `/ideas/$
 export const getViewIdeaRoute = ({ someNick }: ViewIdeaRouteParams) => `/ideas/${someNick}`
 
 export const getNewIdeaRoute = () => '/ideas/new'
+export const getEditProfileRoute = () => '/edit-profile'
+
 export const getSignUpRoute = () => '/sign-up'
 export const getSignInRoute = () => '/sign-in'
 export const getSignOutRoute = () => '/sign-out'

@@ -9,8 +9,7 @@ import { FormItems } from '../../components/FormItems'
 import { useForm } from '../../lib/form'
 import { zCreateIdeaTrpcInput } from '@forum_project/backend/src/router/createIdea/input'
 export const NewIdeaPage = () => {
-    const [successMessageVisible, setSuccessMessageVisible] = useState(false)
-    const [submittingError, setSubmittingError] = useState<string | null>(null)
+
     const createIdea = trpc.createIdea.useMutation()
     
     const { formik, buttonProps, alertProps } = useForm({

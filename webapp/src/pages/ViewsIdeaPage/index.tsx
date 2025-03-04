@@ -5,6 +5,7 @@ import { getEditIdeaRoute, type ViewIdeaRouteParams } from '../../lib/routes';
 import format from 'date-fns/format'
 import { LinkButton } from '../../components/Button'
 import css from './index.module.scss'
+import { useMe } from '../../lib/ctx'
 
 export const ViewsIdeaPage = () => {
     const { someNick } = useParams() as ViewIdeaRouteParams;
@@ -12,9 +13,9 @@ export const ViewsIdeaPage = () => {
     const getIdeaResult = trpc.getIdea.useQuery({
         someNick,
     });
-    const getMeResult = trpc.getMe.useQuery()
+    const me = useMe()
 
-    if (getIdeaResult.isLoading || getIdeaResult.isFetching || getMeResult.isLoading || getMeResult.isFetching) {
+    if (getIdeaResult.isLoading || getIdeaResult.isFetching) {
         return <span>Загрузка...</span>;
     }
 
@@ -22,16 +23,12 @@ export const ViewsIdeaPage = () => {
         return <span>Error: {getIdeaResult.error.message}</span>
     }
 
-    if (getMeResult.isError) {
-        return <span>Error: {getMeResult.error.message}</span>
-      }
-    
+
       if (!getIdeaResult.data.idea) {
         return <span>Обсуждение на найденно</span>;
     }
 
     const idea = getIdeaResult.data.idea
-    const me = getMeResult.data.me
   
 
     return (

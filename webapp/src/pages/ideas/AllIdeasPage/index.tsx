@@ -3,34 +3,63 @@ import {trpc} from '../../../lib/trpc';
 import { Segment } from '../../../components/Segment'
 import {Link} from 'react-router-dom'
 import css from './index.module.scss'
+import { Alert } from '../../../components/Alert'
 
 export const AllIdeasPage = () => {
-    const {data,error,isLoading,isFetching,isError}=trpc.getIdeas.useQuery()
-    if (isLoading || isFetching ){
-        return <span>Загрузка</span>
-    }
-    if (isError){
-        return <span>Ошибка</span>
-    }
+  const { data, error, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage, isRefetching } =
   
-    return (
-      <Segment title="Форум">
+  trpc.getIdeas.useInfiniteQuery(
+    {
+      limit: 1,
+    },
+    {
+      getNextPageParam: (lastPage) => {
+        return lastPage.nextCursor
+      },
+    }
+  )
+  
 
-      <div className={css.ideas}>
-        {data.ideas.map((idea) => (
-          <div className={css.idea} key={idea.nick}>
-            <Segment
-              size={2}
-              title={
-                <Link className={css.ideaLink} to={getViewIdeaRoute({someNick: idea.nick })}>
-                  {idea.name}
-                </Link>
-              }
-              description={idea.description}
-            />
+    return (
+      
+      <Segment title="Форум">
+        
+
+{isLoading || isRefetching ? (
+        <div>Loading...</div>
+      ) : isError ? (
+        <Alert color="red">{error.message}</Alert>
+      ) : (
+        <div className={css.ideas}>
+          {data.pages
+            .flatMap((page) => page.ideas)
+            .map((idea) => (
+              <div className={css.idea} key={idea.nick}>
+                <Segment
+                  size={2}
+                  title={
+                    <Link className={css.ideaLink} to={getViewIdeaRoute({ someNick: idea.nick })}>
+                      {idea.name}
+                    </Link>
+                  }
+                  description={idea.description}
+                />
+              </div>
+            ))}
+          <div className={css.more}>
+            {hasNextPage && !isFetchingNextPage && (
+              <button
+                onClick={() => {
+                  void fetchNextPage()
+                }}
+              >
+                Load more
+              </button>
+            )}
+            {isFetchingNextPage && <span>Loading...</span>}
           </div>
-        ))}
       </div>
+      )}
       </Segment>
     )
   }
